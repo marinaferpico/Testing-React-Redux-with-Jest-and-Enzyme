@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { fetchPosts } from './actions';
 import './app.scss';
 
+//Añadido cambio trivial comentario
+
 /* This const is not used within our app.
    Although we are passing it to the Headline Component
    it is only here as an exampleof testing PropTypes */
