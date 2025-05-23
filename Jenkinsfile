@@ -10,18 +10,16 @@ pipeline {
         pollSCM('H/15 * * * *')
     }
 
-    when {
-        branch 'main'
-    }
-
     stages {
         stage('Install Dependencies') {
+            when { branch 'main' }
             steps {
                 sh 'npm install'
             }
         }
 
         stage('Test') {
+            when { branch 'main' }
             steps {
                 echo '✅ Ejecutando pruebas...'
                 sh 'npm test -- --ci --coverage'
@@ -29,6 +27,7 @@ pipeline {
         }
 
         stage('Build') {
+            when { branch 'main' }
             steps {
                 echo '🏗️ Construyendo la app...'
                 sh 'npm run build'
@@ -36,18 +35,19 @@ pipeline {
         }
 
         stage('Deploy en contenedor del curso') {
+            when { branch 'main' }
             steps {
                 echo '📦 Copiando archivos al contenedor del curso...'
-                sh 'cp -r build/* /ruta/del/contenedor/asignatura/'  // Cambia esto según el entorno real
             }
         }
 
         stage('Deploy en contenedor Docker') {
+            when { branch 'main' }
             steps {
                 echo '🐳 Desplegando en contenedor Docker...'
 
-                // Asegúrate de tener un Dockerfile en tu proyecto
                 sh '''
+                    docker rm -f react-container || true
                     docker build -t my-react-app .
                     docker run -d -p 3000:80 --name react-container my-react-app
                 '''
