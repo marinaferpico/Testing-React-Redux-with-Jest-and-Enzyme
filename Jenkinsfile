@@ -38,6 +38,8 @@ pipeline {
             when { branch 'main' }
             steps {
                 echo '📦 Copiando archivos al contenedor del curso...'
+                sh 'mkdir -p /home/alumno/Escritorio/Practica9/Testing-React-Redux-with-Jest-and-Enzyme/deploy'
+                sh 'cp -r build/* /home/alumno/Escritorio/Practica9/Testing-React-Redux-with-Jest-and-Enzyme/deploy/'
             }
         }
 
