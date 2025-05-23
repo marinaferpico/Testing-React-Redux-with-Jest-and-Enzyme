@@ -14,7 +14,7 @@ pipeline {
         stage('Install Dependencies') {
             when { branch 'main' }
             steps {
-                sh 'npm install'
+                sh 'npm install --legacy-peer-deps'
             }
         }
 
