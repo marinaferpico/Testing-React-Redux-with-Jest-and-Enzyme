@@ -6,10 +6,6 @@ pipeline {
         CI = 'true'
     }
 
-    triggers {
-        pollSCM('H/15 * * * *')
-    }
-
     stages {
         stage('Install Dependencies') {
             when { branch 'main' }
